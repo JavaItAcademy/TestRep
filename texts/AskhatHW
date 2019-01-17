@@ -1,0 +1,17 @@
+#Table1
+- table1_id
+- Field1
+- Field2
+...
+- FieldN
+#Table2
+- table2_id
+- table1_id
+- Field1
+- Field2
+...
+- FieldN
+#Table1 has Primary Key (PK) - table1_id // Первичный ключ
+#Table2 has Primary Key (PK) - table2_id // Первичный ключ
+#Table2 has Foreign Key (FK) - table1_id // Внешний ключ
+etc...
