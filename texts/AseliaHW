@@ -1,0 +1,18 @@
+#Types of Products
+ID       Name      Unit Measurement
+-0(PK)   ДСМ       шт
+-1(PK)   Фанера    шт
+-2(PK)   Лес       м
+
+#Suptypes of Products
+ID(PK)   ID of Suptype(FK)  Name of Suptype
+-0	      0	                    ДВП
+-0        1	                    ДВПО
+-0	      2	                    ДСП
+
+#Prices
+Товар	Подвид	Наименование 	                          Цена
+0	     0	    ДВП3,2х1700х2745 тверд. марка Т гр Б	   276
+0 	     0	    ДВП3,2х1700х2745 Братск	                   286
+0	     0      ДВПБрак	                                   250
+
