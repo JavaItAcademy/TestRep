@@ -86,6 +86,6 @@ values(6, 4, '17:00', 5);
 insert into visiting7(id, visitor, visit_time, trainer_id)
 values(7, 5, '19:00', 5);
 
-select * from visiting6
+select * from visiting7
 where trainer_id=5
 order by visit_time desc
