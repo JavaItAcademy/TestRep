@@ -1,0 +1,91 @@
+create table sport_types5(
+sport_id integer primary key,
+sport_type varchar (50) unique not null,
+s_salary integer )
+
+
+create table trainers5(
+trainer_id integer primary key,
+full_name  varchar (50) unique not null,
+sport_id integer not null  references sport_types5(sport_id),
+phone_number varchar (50) not null,
+inn varchar (14) unique not null
+)
+
+insert into sport_types5(sport_id, sport_type, s_salary )
+values (1, 'football', 400);
+insert into sport_types5(sport_id, sport_type, s_salary )
+values (2, 'golf', 100);
+insert into sport_types5(sport_id, sport_type, s_salary )
+values (3, 'basketball', 500);
+insert into sport_types5(sport_id, sport_type, s_salary )
+values (4, 'tennis', 800);
+insert into sport_types5(sport_id, sport_type, s_salary )
+values (5, 'swim', 2000);
+
+insert into trainers5 ( trainer_id, full_name, sport_id, phone_number, inn)
+values (1, 'football trainer Jake',1,'070900988', '3654');
+insert into trainers5 ( trainer_id, full_name, sport_id, phone_number, inn)
+values (2, 'golf  trainer Dex',2,'0700009488', '789');
+insert into trainers5 ( trainer_id, full_name, sport_id, phone_number, inn)
+values (3, 'backetball trainer Ran',3,'0555007988', '15412');
+insert into trainers5 ( trainer_id, full_name, sport_id, phone_number, inn)
+values (4, 'tennis trainer Adi',4,'070000995', '516546');
+insert into trainers5 ( trainer_id, full_name, sport_id, phone_number, inn)
+values (5, 'swiming trainer Jack',4,'070009188', '78895');
+
+
+select t.*, s.sport_type, s.s_salary
+from
+trainers5 t join sport_types5 s on t.sport_id= s.sport_id
+
+
+create table  visitor5 (
+visitor_id integer primary key not null,
+visitor_name varchar(50) unique not null,
+v_bd date not null,
+visitor_gender varchar (10) not null,
+sport_id integer not null  references sport_types5(sport_id))
+
+
+insert into visitor5 (visitor_id, visitor_name, v_bd, visitor_gender, sport_id)
+values (1, '  Samidinova Aigerim', '1998-12-15', 'female',5);
+insert into visitor5 (visitor_id, visitor_name, v_bd, visitor_gender,sport_id)
+values (2, 'Totoev Almanbet', '1997-11-28', 'male',3);
+insert into visitor5 (visitor_id, visitor_name, v_bd, visitor_gender,sport_id)
+values (3, 'Ramankulov Aziret', '2003-12-03', 'male',4);
+insert into visitor5 (visitor_id, visitor_name, v_bd, visitor_gender,sport_id)
+values (4, ' Albaeva Elvira', '1992-02-23', 'female',1);
+insert into visitor5 (visitor_id, visitor_name, v_bd, visitor_gender,sport_id)
+values (5, ' Astik Serikov', '2003-01-01', 'male',5);
+insert into visitor5 (visitor_id, visitor_name, v_bd, visitor_gender,sport_id)
+values (6, ' Akimova Aidana', '1994-04-16', 'female',5);
+
+create table visiting6(
+visitor_id integer not null references visitor5 (visitor_id),
+time_to_visit varchar(10) not null)
+
+create table visiting7(
+id integer primary key,
+visitor integer not null references visitor5(visitor_id),
+visit_time varchar(10),
+trainer_id integer not null references trainers4(trainer_id)
+)
+insert into visiting7(id, visitor, visit_time, trainer_id)
+values(1, 2, '14:00', 1);
+insert into visiting7(id, visitor, visit_time, trainer_id)
+values(2, 1, '12:00', 3);
+insert into visiting7(id, visitor, visit_time, trainer_id)
+values(3, 3, '16:00', 3);
+insert into visiting7(id, visitor, visit_time, trainer_id)
+values(4, 3, '15:00', 3);
+insert into visiting7(id, visitor, visit_time, trainer_id)
+values(5, 6, '19:00', 5);
+insert into visiting7(id, visitor, visit_time, trainer_id)
+values(6, 4, '17:00', 5);
+insert into visiting7(id, visitor, visit_time, trainer_id)
+values(7, 5, '19:00', 5);
+
+select * from visiting6
+where trainer_id=5
+order by visit_time desc
