@@ -1,3 +1,4 @@
+HW 39
 #Types of Products
 ID       Name      Unit Measurement
 -0(PK)   ДСМ       шт
@@ -16,3 +17,82 @@ ID(PK)   ID of Suptype(FK)  Name of Suptype
 0 	     0	    ДВП3,2х1700х2745 Братск	                   286
 0	     0      ДВПБрак	                                   250
 
+
+HW 40
+create table visitors(
+visiter_id varchar primary key,
+full_name varchar (50) unique not null,
+date_of_birth varchar (20) not null,
+gender varchar (10) not null
+)
+
+create table visits(
+visiter_id varchar references visitors(visiter_id),
+time_of_visit timestamp not null,
+coach_id varchar not null references coach(coach_id)
+)
+
+insert into visitors(visiter_id , full_name , date_of_birth , gender)
+values ('1' , 'Sam' , '03-12-1989' , 'male');
+
+insert into visitors(visiter_id , full_name , date_of_birth , gender)
+values ('2' , 'Cammie' , '20-08-1997' , 'female');
+
+insert into visitors(visiter_id , full_name , date_of_birth , gender)
+values ('3' , 'Megan' , '07-05-2000' , 'female');
+
+insert into visitors(visiter_id , full_name , date_of_birth , gender)
+values ('4' , 'Genesis' , '03-01-1999' , 'female');
+
+insert into visits(visiter_id , time_of_visit , coach_id)
+values ('1' , 12-12,6);
+
+insert into visits(visiter_id , time_of_visit , coach_id)
+values ('2' ,14-31,6);
+
+insert into visits(visiter_id , time_of_visit , coach_id)
+values ('3' ,09-12 ,1);
+
+insert into visits(visiter_id , time_of_visit , coach_id)
+values ('4' ,09-00 ,1);
+
+select v.* , vi.coach_id ,vi.time_of_visit
+    from visitors v join visits vi
+    on v.visiter_id = vi.coach_id
+    order by vi.time_of_visit asc
+
+
+    B
+Как вы понимаете Git?
+
+Git - это площядка где несколько разработчиков могут совместно писать код ,при это не мешая друг другу и быть в крусе ,кто что пишет. И с возможности к конце все соеденить(merge).
+
+Для чего нам нужны Базы Данных?
+Базы данные нужно для того чтобы где то хранить информацию, уметь ею манипулировать, и иметь легкое способ найт все что тебе нужно среди данных.
+
+Что делает команда ‘commit’?
+Команда ‘commit’ сохраняет те изменения которые вы сделали в локальной репозитории.
+
+Что делает команда ‘pull?
+Команда ‘pull' берет все изменения которые произошли с проектом в git и обновляет ими ваш код.
+
+Что делает команда ‘push?
+Команда  'push' берет все изменения которые вы сделали и сохранили в локальной репозитории, и сохраняет в git.
+
+Что такое первичный ключ (Primary Key)?
+Первичный ключ это как бы id-иша, она изпользуеться когда нужно соединить две или больше таблиц, при это не повторяя данные.
+
+Что такое внешний ключ (Foreign Key)?
+Это внешний ключ который связывается с первичный ключ.
+
+Чем отличаются колонки от строк?
+В колонках пишеться описания строк, что будет в них содержаться.
+
+Чем отличаются таблицы от базы данных?
+База данных это совокупность нескольких таблиц.
+
+Что такое CRUD операции?
+Create
+Read
+Update
+Delete
