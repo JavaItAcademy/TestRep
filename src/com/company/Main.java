@@ -1,8 +1,15 @@
 package com.company;
 
+import com.company.Group3.Aigerim;
+
+import java.sql.*;
+
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
+        Aigerim aigerim = new Aigerim();
+        aigerim.connect();
+        aigerim.getTrainersCount();
+        aigerim.getStudents();
     }
 }
