@@ -1,8 +1,6 @@
 package com.company;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class DataBaseConnector {
     private final String url = "jdbc:postgresql://localhost:5432/";
@@ -18,5 +16,20 @@ public class DataBaseConnector {
             System.out.println(e.getMessage());
         }
         return conn;
+    }
+    public static void getTrainers(){
+        DataBaseConnector db = new DataBaseConnector();
+        String SQL = "SELECT id, title from courses";
+
+        try(Connection conn = db.connect();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(SQL)){
+            while(rs.next()){
+                System.out.println(rs.getInt("id") + " || "
+                        + rs.getString("title"));
+            }
+        }catch (SQLException ex){
+            System.out.println(ex.getMessage());
+        }
     }
 }
