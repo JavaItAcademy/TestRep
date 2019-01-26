@@ -65,4 +65,49 @@ public class DataBaseConnector {
         return test;
     }
 
+    //---------------   NEW -------------
+
+    public static void insertCity(City city){
+        DataBaseConnector db = new DataBaseConnector();
+        String SQL = "insert into cities values(?,?,?,?)";
+//        String SQL = "insert into cities values(" + city.id + ", " + city.title + ", " + city.country_id + ", " + city.mayor_id;
+        try(Connection conn = db.connect();
+            PreparedStatement stmt = conn.prepareStatement(SQL)){
+            stmt.setInt(1, city.id);
+            stmt.setString(2, city.title);
+            stmt.setInt(3, city.country_id);
+            stmt.setInt(4, city.mayor_id);
+            stmt.executeUpdate();
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+    }
+    public static void insertCountry(Country country){
+        DataBaseConnector db = new DataBaseConnector();
+        String SQL = "insert into country values(?,?)";
+//        String SQL = "insert into country values(" + country.id + ", " + country.title");")
+        try(Connection conn = db.connect();
+            PreparedStatement stmt = conn.prepareStatement(SQL)){
+            stmt.setInt(1, country.id);
+            stmt.setString(2, country.title);
+            stmt.executeUpdate();
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+    }
+    public static void insertHuman(Human human){
+        DataBaseConnector db = new DataBaseConnector();
+        String SQL = "insert into human values(?,?)";
+        try(Connection conn = db.connect();
+            PreparedStatement stmt = conn.prepareStatement(SQL)
+        ){
+            stmt.setInt(1,  human.id );
+            stmt.setString(2, human.fullname);
+            stmt.executeUpdate();
+        }
+        catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+    }
+
 }
