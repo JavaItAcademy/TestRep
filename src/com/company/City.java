@@ -12,4 +12,14 @@ public class City {
         this.country_id = country_id;
         this.mayor_id = mayor_id;
     }
+
+    @Override
+    public String toString() {
+        return "City{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", country_id=" + country_id +
+                ", mayor_id=" + mayor_id +
+                '}';
+    }
 }

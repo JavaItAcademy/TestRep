@@ -8,4 +8,12 @@ public class Human {
         this.id = id;
         this.fullname = fullname;
     }
+
+    @Override
+    public String toString() {
+        return "Human{" +
+                "id=" + id +
+                ", fullname='" + fullname + '\'' +
+                '}';
+    }
 }

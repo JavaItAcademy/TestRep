@@ -8,4 +8,12 @@ public class Country {
         this.id = id;
         this.title = title;
     }
+
+    @Override
+    public String toString() {
+        return "Country{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                '}';
+    }
 }

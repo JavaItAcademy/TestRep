@@ -1,6 +1,7 @@
 package com.company;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class DataBaseConnector {
     private final String url = "jdbc:postgresql://localhost:5432/";
@@ -104,6 +105,55 @@ public class DataBaseConnector {
             stmt.setInt(1,  human.id );
             stmt.setString(2, human.fullname);
             stmt.executeUpdate();
+        }
+        catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+    }
+    public static void fillArrayListCountry(ArrayList<Country> a){
+        DataBaseConnector db = new DataBaseConnector();
+        String SQL = "select * from country";
+        try(Connection conn = db.connect();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(SQL)
+        ){
+            while(rs.next()){
+                a.add(new Country(rs.getInt("id"), rs.getString("title")));
+            }
+        }
+        catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+    }
+    public static void fillArrayListCities(ArrayList<City> a){
+        DataBaseConnector db = new DataBaseConnector();
+        String SQL = "select * from cities";
+        try(Connection conn = db.connect();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(SQL)
+        ){
+            while(rs.next()){
+                a.add(new City(rs.getInt("id"),
+                        rs.getString("title"),
+                        rs.getInt("country_id"),
+                        rs.getInt("mayor_id")));
+            }
+        }
+        catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+    }
+    public static void fillArrayListHumans(ArrayList<Human> a){
+        DataBaseConnector db = new DataBaseConnector();
+        String SQL = "select * from human";
+        try(Connection conn = db.connect();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(SQL)
+        ){
+            while(rs.next()){
+                a.add(new Human(rs.getInt("id"),
+                        rs.getString("fullname")));
+            }
         }
         catch(SQLException ex){
             System.out.println(ex.getMessage());
