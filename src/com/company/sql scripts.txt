@@ -1,0 +1,51 @@
+create table genders(
+id int primary key,
+title varchar(50) not null);
+insert into genders(id, title)
+values(1, 'male'),(2, 'female');
+
+create table clients(
+id int primary key,
+fullname varchar(50) not null,
+birthdate date not null,
+gender_id int references genders(id)
+);
+insert into clients(id, fullname, birthdate, gender_id)
+values (1, 'Nikolay Petrov', date '1995-09-12', 1),
+(2, 'Kylym Janarbekov', date '1985-12-02', 1),
+(4, 'Albina Karimova', date '1994-04-14', 2),
+(3, 'Madina Ruslanova', date '1978-05-22', 2),
+(5, 'Aliya Kerimbekova', date '2000-08-01', 2),
+(6, 'Bex Batyrbekov', date '2001-09-06', 1),
+(7, 'Kutman Salamatov', date '1989-09-03', 1),
+(8, 'Regina Matveeva', date '1999-01-01', 2);
+create table attandency(
+id int primary key,
+client_id int references clients(id) not null,
+att_time time not null,
+trainer_id int references trainers(trainer_id)
+);
+insert into attandency(id, client_id, att_time, trainer_id)
+values
+(2, 1, '08:44', 5),
+(3, 4, '09:56', 3),
+(4, 5, '17:34', 2),
+(5, 6, '15:15', 6),
+(6, 3, '17:19', 8),
+(7, 4, '11:19', 7),
+(8, 7, '13:43', 4),
+(9, 6, '12:23', 5),
+(10, 5, '11:39', 2),
+(11, 2, '17:54', 5),
+(12, 8, '15:45', 2),
+(13, 4, '16:55', 5),
+(14, 1, '17:25', 7),
+(15, 5, '18:13', 7),
+(16, 6, '09:00', 3),
+(17, 3, '09:09', 2),
+(18, 8, '10:01', 3);
+
+select c.fullname, a.att_time, a.trainer_id from attandency a
+join clients c
+on a.client_id = c.id
+order by a.att_time asc
